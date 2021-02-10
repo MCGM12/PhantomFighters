@@ -79,12 +79,16 @@ public class TestFOV : MonoBehaviour
             if(Vector2.Angle(transform.up, dirToTarget) < viewAngle /2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if(!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
                     Debug.Log("player spotted");
                     spotted = true;
-                } 
+                }
+                else
+                {
+                    spotted = false;
+                }
             }
         }
     }
