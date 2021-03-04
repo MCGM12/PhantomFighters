@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PullPlayerCount : MonoBehaviour
 {
@@ -13,18 +14,31 @@ public class PullPlayerCount : MonoBehaviour
     string url2 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=1";
     string url3 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=2";
 
+    public float roomNumber;
+
+    public TextMeshProUGUI playerDisp1;
+    public TextMeshProUGUI playerDisp2;
+    public TextMeshProUGUI playerDisp3;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         string m_Path;
         m_Path = Application.dataPath;
         Debug.Log("data path: " + m_Path);
         UpdatePlayerCount();
+        //UpdateDisplayText();
     }
 
     public void UpdatePlayerCount()
     {
         Debug.Log("Calling website");
         StartCoroutine(GetRequest());
+        //UpdateDisplayText();
     }
 
     private void GetCurrentPlayers1(string webText)
@@ -35,6 +49,7 @@ public class PullPlayerCount : MonoBehaviour
         //    Debug.Log("Was null");
         //webData[1] = "0";
         numPlayers1 = float.Parse(webData[1]);
+        playerDisp1.text = numPlayers1 + " / 8";
         Debug.Log("1: " + numPlayers1.ToString());
     }
 
@@ -45,6 +60,7 @@ public class PullPlayerCount : MonoBehaviour
         //    Debug.Log("Was null");
         //    webData[1] = "0";
         numPlayers2 = float.Parse(webData[1]);
+        playerDisp2.text = numPlayers2 + " / 8";
         Debug.Log("2: " + numPlayers2.ToString());
     }
 
@@ -55,6 +71,7 @@ public class PullPlayerCount : MonoBehaviour
         //    Debug.Log("Was null");
         //webData[1] = "0";
         numPlayers3 = float.Parse(webData[1]);
+        playerDisp3.text = numPlayers3 + " / 8";
         Debug.Log("3: " + numPlayers3.ToString());
     }
 
@@ -124,4 +141,12 @@ public class PullPlayerCount : MonoBehaviour
             }
         }
     }
+
+    //void UpdateDisplayText()
+    //{
+    //    playerDisp1.text = numPlayers1 + " / 8";
+    //    playerDisp2.text = numPlayers2 + " / 8";
+    //    playerDisp3.text = numPlayers3 + " / 8";
+    //    Debug.Log("Updated display text");
+    //}
 }
