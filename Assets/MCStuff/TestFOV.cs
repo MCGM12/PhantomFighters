@@ -52,13 +52,12 @@ public class TestFOV : MonoBehaviour
 
     private void Update()
     {
-        pT = GameObject.FindGameObjectWithTag("Player").transform;
+        pT = GameObject.FindGameObjectWithTag("Statue").transform;
         DrawFieldOfView();
-        //FindVisibleTargets();
+        FindVisibleTargets();
         if(spotted)
         {
-            //GetComponent<AIControl>().playerSpotted = true;
-            //StartCoroutine(WaitTime(0.2f, spotted));
+           
         }
         
     }
@@ -74,7 +73,7 @@ public class TestFOV : MonoBehaviour
         //This Finds Enemies in the FOV Area- isnt visualized yet, but math wise its there
         for(int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            target = targetsInViewRadius[i].transform; //targets transform (player)
+            target = targetsInViewRadius[i].transform; //targets transform (object you wish to target)
             Vector2 dirToTarget = (target.position - transform.position).normalized;
             if(Vector2.Angle(transform.up, dirToTarget) < viewAngle /2)
             {
@@ -135,7 +134,7 @@ public class TestFOV : MonoBehaviour
     {
         if(spotted)
         {
-            Debug.Log("Player is being detected! " + spotted + " .");
+            Debug.Log("Object is being detected! " + spotted + " .");
         }
         //if (visibleTargets.Contains(target))
         //{
