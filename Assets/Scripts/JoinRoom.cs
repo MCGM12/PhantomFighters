@@ -6,52 +6,57 @@ using UnityEngine.SceneManagement;
 
 public class JoinRoom : MonoBehaviour
 {
-    public float numPlayers;
-    string url = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=0";
+    public GameObject currentPlayers;
+    string url = "http://vgdapi.basmati.org/mods4.php";
     
-    void Start()
-    {
-        string m_Path;
-        m_Path = Application.dataPath;
-        Debug.Log("data path: " + m_Path);
-    }
 
-    public void JoinRoom1()
+    public void JoinGame(float roomNum)
     {
         Debug.Log("Calling website");
-        StartCoroutine(GetRequest(url));
+        currentPlayers.GetComponent<PullPlayerCount>().UpdatePlayerCount();
+        StartCoroutine(Upload(roomNum));
     }
 
-    private void GetCurrentPlayers(string webText)
+    IEnumerator Upload(float roomNum)
     {
-        //Data comes in ROW,DATA
-        string[] webData = webText.Split(',');
-        numPlayers = float.Parse(webData[1]);
-        Debug.Log(numPlayers.ToString());
-    }
+        WWWForm form = new WWWForm();
+        // form.AddField("myField", "myData");
+        form.AddField("groupid", "pm38");
+        form.AddField("grouppw", "2yy67vZFEU");
+        form.AddField("row", roomNum.ToString());
 
-    IEnumerator GetRequest(string uri)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        if (roomNum == 0)
         {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+            float numPlayers1 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers1;
+            numPlayers1++;
+            form.AddField("s4", numPlayers1.ToString());
+        } else if (roomNum == 1)
+        {
+            float numPlayers2 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers2;
+            numPlayers2++;
+            form.AddField("s4", numPlayers2.ToString());
+        } else
+        {
+            float numPlayers3 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers3;
+            numPlayers3++;
+            form.AddField("s4", numPlayers3.ToString());
+        }
 
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
+        currentPlayers.GetComponent<PullPlayerCount>().UpdatePlayerCount();
+        //form.AddField("s4", "");
 
-            if (webRequest.isNetworkError)
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
             {
-                Debug.Log(pages[page] + ": Error: " + webRequest.error);
+                Debug.Log(www.error);
             }
             else
             {
-                Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                GetCurrentPlayers(webRequest.downloadHandler.text);
-
+                Debug.Log("Form upload complete!");
             }
         }
-
-
     }
 }
