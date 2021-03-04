@@ -11,6 +11,9 @@ public class TestFOV : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
 
+    public GameObject enemyStatue;
+    public SpriteRenderer sr;
+
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
     public Transform pT;
@@ -52,14 +55,23 @@ public class TestFOV : MonoBehaviour
 
     private void Update()
     {
-        pT = GameObject.FindGameObjectWithTag("Statue").transform;
+        pT = target;//GameObject.FindGameObjectWithTag("Statue").transform;
         DrawFieldOfView();
         FindVisibleTargets();
-        if(spotted)
+        if(target != null)
         {
-           
+            sr = target.GetComponent<SpriteRenderer>();
         }
-        
+        if(spotted) //turn statue to visible
+        {
+            sr.enabled = true;
+        }
+        else
+        {
+            sr.enabled = false;
+
+        }
+
     }
 
    
