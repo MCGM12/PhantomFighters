@@ -31,10 +31,10 @@ public class Push : MonoBehaviour
        // form.AddField("myField", "myData");
         form.AddField("groupid", "pm38");
         form.AddField("grouppw", "2yy67vZFEU");
-        form.AddField("row", 0);
+        form.AddField("row", 7);
         string statXY = statue.transform.position.x.ToString() + "|" + statue.transform.position.y.ToString();
 
-        form.AddField("s4", "test");
+        form.AddField("s4", statXY);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
         {
