@@ -12,12 +12,13 @@ public class TestFOV : MonoBehaviour
     public LayerMask obstacleMask;
 
     public GameObject enemyStatue;
-    public SpriteRenderer sr;
+    
 
     [HideInInspector]
+    public SpriteRenderer sr; //if you need to find and disable/enable/edit anything with the targets sprite renderer
     public List<Transform> visibleTargets = new List<Transform>();
-    public Transform pT;
-    Transform target;
+    public Transform pT; //target transform if you need a seperate variable
+    Transform target; // the target found by FindVisibleTargets();
 
     public float meshResolution;
     public bool spotted;
@@ -27,11 +28,18 @@ public class TestFOV : MonoBehaviour
 
 
 
+    //This script uses an FOV area in front of an object in order to find objects via raycasts. Script has nearly been 100% modified for 2D, if you don't need a visual area (which goes through walls
+    // because it uses meshes which are meant for 3D, thats the only buggy part) then dont bother assigning a mesh or mesh filter. Merely set the view radius and angle to find stuff in the area
+    // shown in the editor, then set an obstacle mask if you need one and the target mask, which is the mask assigned to the object or objects you wish to find.
+
+    // If used correctly, can work perfectly with 2D lighting and 2D shadowcasting. Simply edit the radius and angle to be exactly the same as your light and it will work great.
+   
+
+
+
 
     private void Start()
     {
-
-        
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
@@ -69,7 +77,6 @@ public class TestFOV : MonoBehaviour
         else
         {
             sr.enabled = false;
-
         }
 
     }
