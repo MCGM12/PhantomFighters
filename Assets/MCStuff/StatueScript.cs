@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class StatueScript : MonoBehaviour
 {
-    GameObject player; //The player.
-    Vector3 optDist; //Optional distance till script starts executing Visbility();
-    Transform tf; //Player Transform
+  
 
     void Start()
     {
@@ -15,11 +13,8 @@ public class StatueScript : MonoBehaviour
 
     void Update()
     {
-        Visibility();
+        
     }
 
-    void Visibility()
-    {
-
-    }
+ 
 }
