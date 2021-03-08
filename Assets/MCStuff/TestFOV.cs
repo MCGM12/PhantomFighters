@@ -69,15 +69,16 @@ public class TestFOV : MonoBehaviour
         if(target != null)
         {
             sr = target.GetComponent<SpriteRenderer>();
+            if (spotted) //turn statue to visible
+            {
+                sr.enabled = true;
+            }
+            else
+            {
+                sr.enabled = false;
+            }
         }
-        if(spotted) //turn statue to visible
-        {
-            sr.enabled = true;
-        }
-        else
-        {
-            sr.enabled = false;
-        }
+
 
     }
 
