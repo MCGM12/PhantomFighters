@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopDownMove : MonoBehaviour {
+public class TopDown2 : MonoBehaviour {
     public float scalar;
     public float speedCap;
     private Rigidbody2D rb2;
@@ -17,8 +17,9 @@ public class TopDownMove : MonoBehaviour {
         //Player movement  
         float inX = Input.GetAxis("Horizontal");
         float inY = Input.GetAxis("Vertical");
-        if (rb2.velocity.magnitude < speedCap) {
-            rb2.AddForce(new Vector2(inX, inY) * scalar * Time.deltaTime);
-        }
+        rb2.velocity = new Vector2(inX, inY) * scalar;
+        /*if (rb2.velocity.magnitude < speedCap) {
+            rb2.velocity += new Vector2(inX, inY) * acceleration * Time.deltaTime;
+        }*/
     }
 }
