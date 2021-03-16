@@ -18,8 +18,8 @@ public class TopDown2 : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate() {
         //Player movement  
-        float inX = Input.GetAxis("Horizontal");
-        float inY = Input.GetAxis("Vertical");
+        float inX = Input.GetAxis("HorizontalMove");
+        float inY = Input.GetAxis("VerticalMove");
         rb2.velocity = new Vector2(inX, inY) * currScalar;
     }
 
