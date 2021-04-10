@@ -7,6 +7,7 @@ TagManager:
   - Statue
   - InnerWall
   - Powerup
+  - PlayerStatue
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Visi2
   - Statue
   - AnitFOV
-  - 
+  - PlayerStatue
   - 
   - 
   - 

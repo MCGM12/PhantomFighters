@@ -13,22 +13,25 @@ public class StatueScript : MonoBehaviour
     void Start()
     {
         statTimer = 5f;
+        stat = this.transform;
     }
 
     void Update()
     {
-        if(timer == false)
+        stat = this.transform;
+        //transform.position = player.position;
+        if (timer == false)
         {
             timer = true;
-            StartCoroutine("Timer(statTimer)");
+            StartCoroutine(Timer());
         }
     }
 
-    private IEnumerable Timer(float time)
+    private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(time);
-        stat.position = player.position;
+        yield return new WaitForSeconds(statTimer);
         timer = false;
+        transform.position = player.position;
     }
 
  
