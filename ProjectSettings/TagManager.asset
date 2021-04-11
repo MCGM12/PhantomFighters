@@ -8,6 +8,7 @@ TagManager:
   - InnerWall
   - Powerup
   - PlayerStatue
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class StatueScript : MonoBehaviour
     public float Statue1Timer;
     public float statTimer;
     public bool timer;
+    public bool timerActive;
     public Transform stat;
     public Transform player;
 
@@ -31,7 +32,7 @@ public class StatueScript : MonoBehaviour
     {
         yield return new WaitForSeconds(statTimer);
         timer = false;
-        transform.position = player.position;
+        if(timerActive)transform.position = player.position;
     }
 
  

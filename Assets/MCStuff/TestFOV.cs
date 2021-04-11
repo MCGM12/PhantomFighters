@@ -16,6 +16,9 @@ public class TestFOV : MonoBehaviour
 
     [HideInInspector]
     public SpriteRenderer sr; //if you need to find and disable/enable/edit anything with the targets sprite renderer
+    public SpriteRenderer sr1; 
+    public SpriteRenderer sr2; 
+    public SpriteRenderer sr3;
     public List<Transform> visibleTargets = new List<Transform>();
     public Transform pT; //target transform if you need a seperate variable
     Transform target; // the target found by FindVisibleTargets();
@@ -63,7 +66,7 @@ public class TestFOV : MonoBehaviour
 
     private void Update()
     {
-        pT = target;//GameObject.FindGameObjectWithTag("Statue").transform;
+        pT = target;
         DrawFieldOfView();
         FindVisibleTargets();
         if(target != null)
