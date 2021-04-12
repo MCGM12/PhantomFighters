@@ -87,12 +87,12 @@ public class Push : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U)) //Pull after pushing as well
         {
             Debug.Log("PUSHING DATA....");
-            //thisStatue.transform.position = transform.position;
+            thisStatue.transform.position = transform.position;
             StartCoroutine(Upload());
             Debug.Log(Statue.transform.position);
 
             // Pull other statue locations
-            StartCoroutine(Pull(thisPullURL, Statue));
+            StartCoroutine(Pull(pullURL, Statue));
             StartCoroutine(Pull(pullURL1, statue1));
             StartCoroutine(Pull(pullURL2, statue2));
             StartCoroutine(Pull(pullURL3, statue3));

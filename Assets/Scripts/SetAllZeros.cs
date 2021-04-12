@@ -9,7 +9,7 @@ public class SetAllZeros : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(Upload());
+        StartCoroutine(Upload());
     }
 
     private void Update()
