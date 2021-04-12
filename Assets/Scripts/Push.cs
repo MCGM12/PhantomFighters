@@ -68,18 +68,25 @@ public class Push : MonoBehaviour
         {
             SceneManager.LoadScene("Title");
         }
-        //transform.position = player.position;
+        transform.position = this.transform.position;
         if (timer == false)
         {
             timer = true;
             StartCoroutine(Timer());
         }
-        if (Input.GetKeyDown(KeyCode.U))
+        // Push statue location
+        if (Input.GetKeyDown(KeyCode.U)) //Pull after pushing as well
         {
             Debug.Log("PUSHING DATA....");
             Statue.transform.position = transform.position;
             StartCoroutine(Upload());
             Debug.Log(Statue.transform.position);
+
+            // Pull other statue locations
+            StartCoroutine(Pull(thisPullURL, Statue));
+            StartCoroutine(Pull(pullURL1, statue1));
+            StartCoroutine(Pull(pullURL2, statue2));
+            StartCoroutine(Pull(pullURL3, statue3));
         }
         if(Input.GetKeyDown(KeyCode.P))
         {
