@@ -29,6 +29,7 @@ public class Push : MonoBehaviour
 
     void Start()
     {
+       
         mang = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         statTimer = 5f;
         
@@ -38,24 +39,27 @@ public class Push : MonoBehaviour
 
         //Output the Game data path to the console
         Debug.Log("dataPath : " + m_Path);
-        if(mang.N_Player == 1)
+
+        //Finds what player slot you are, adjusts things accordingly.
+        if(mang.p1)
         {
-            thisPullURL = pullURL;
-            row = 101;
-        }
-        else if(mang.N_Player == 2)
-        {
-            thisPullURL = pullURL1;
-            row = 102;
-        }
-        else if(mang.N_Player == 3)
-        {
-            thisPullURL = pullURL2;
-            row = 103;
-        } else if(mang.N_Player <= 0)
-        {
-            thisPullURL = pullURL;
             row = 100;
+            thisPullURL = pullURL;
+        }
+        if (mang.p2)
+        {
+            row = 101;
+            thisPullURL = pullURL1;
+        }
+        if (mang.p3)
+        {
+            row = 102;
+            thisPullURL = pullURL2;
+        }
+        if (mang.p4)
+        {
+            row = 103;
+            thisPullURL = pullURL3;
         }
 
 
