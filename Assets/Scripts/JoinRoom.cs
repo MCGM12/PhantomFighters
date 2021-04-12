@@ -31,7 +31,7 @@ public class JoinRoom : MonoBehaviour
             if (numPlayers1 < 4)
             {
                 numPlayers1++;
-                GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
                 currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 0;
                 SceneManager.LoadScene("LightingTest");
             } else
@@ -39,35 +39,7 @@ public class JoinRoom : MonoBehaviour
                 Debug.Log("Room was full");
             }
             form.AddField("s4", numPlayers1.ToString());
-        } //else if (roomNum == 1)
-        //{
-        //    float numPlayers2 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers2;
-        //    if (numPlayers2 < 4)
-        //    {
-        //        numPlayers2++;
-        //        currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 1;
-        //        SceneManager.LoadScene("LightingTest");
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Room was full");
-        //    }
-        //    form.AddField("s4", numPlayers2.ToString());
-        //} else
-        //{
-        //    float numPlayers3 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers3;
-        //    if (numPlayers3 < 4)
-        //    {
-        //        numPlayers3++;
-        //        currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 2;
-        //        SceneManager.LoadScene("LightingTest");
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Room was full");
-        //    }
-        //    form.AddField("s4", numPlayers3.ToString());
-        //}
+        } 
 
         currentPlayers.GetComponent<PullPlayerCount>().UpdatePlayerCount();
         //form.AddField("s4", "");

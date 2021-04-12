@@ -8,17 +8,20 @@ using TMPro;
 public class PullPlayerCount : MonoBehaviour
 {
     public float numPlayers1;
-    //public float numPlayers2;
-    //public float numPlayers3;
+    public float numPlayers2;
+    public float numPlayers3;
+    public float numPlayers4;
     string url1 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=0";
-    //string url2 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=1";
-    //string url3 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=2";
+    string url2 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=1";
+    string url3 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=2";
+    string url4 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=3";
 
     public float roomNumber;
 
     public TextMeshProUGUI playerDisp1;
-    //public TextMeshProUGUI playerDisp2;
-    //public TextMeshProUGUI playerDisp3;
+    public TextMeshProUGUI playerDisp2;
+    public TextMeshProUGUI playerDisp3;
+    public TextMeshProUGUI playerDisp4;
 
     private void Awake()
     {
