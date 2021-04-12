@@ -28,7 +28,7 @@ public class JoinRoom : MonoBehaviour
         if (roomNum == 0)
         {
             float numPlayers1 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers1;
-            if (numPlayers1 < 4)
+            if (numPlayers1 < 1)
             {
                 numPlayers1++;
                 //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
@@ -40,6 +40,54 @@ public class JoinRoom : MonoBehaviour
             }
             form.AddField("s4", numPlayers1.ToString());
         } 
+        if (roomNum == 1)
+        {
+            float numPlayers2 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers2;
+            if (numPlayers2 < 1)
+            {
+                numPlayers2++;
+                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 1;
+                SceneManager.LoadScene("LightingTest");
+            }
+            else
+            {
+                Debug.Log("Room was full");
+            }
+            form.AddField("s4", numPlayers2.ToString());
+        }
+        if (roomNum == 2)
+        {
+            float numPlayers3 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers3;
+            if (numPlayers3 < 1)
+            {
+                numPlayers3++;
+                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 2;
+                SceneManager.LoadScene("LightingTest");
+            }
+            else
+            {
+                Debug.Log("Room was full");
+            }
+            form.AddField("s4", numPlayers3.ToString());
+        }
+        if (roomNum == 3)
+        {
+            float numPlayers4 = currentPlayers.GetComponent<PullPlayerCount>().numPlayers4;
+            if (numPlayers4 < 1)
+            {
+                numPlayers4++;
+                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 3;
+                SceneManager.LoadScene("LightingTest");
+            }
+            else
+            {
+                Debug.Log("Room was full");
+            }
+            form.AddField("s4", numPlayers4.ToString());
+        }
 
         currentPlayers.GetComponent<PullPlayerCount>().UpdatePlayerCount();
         //form.AddField("s4", "");
