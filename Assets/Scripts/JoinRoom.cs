@@ -31,7 +31,7 @@ public class JoinRoom : MonoBehaviour
             if (numPlayers1 < 1)
             {
                 numPlayers1++;
-                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
                 currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 0;
                 SceneManager.LoadScene("LightingTest");
             } else
@@ -46,7 +46,7 @@ public class JoinRoom : MonoBehaviour
             if (numPlayers2 < 1)
             {
                 numPlayers2++;
-                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player1 = numPlayers2;
                 currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 1;
                 SceneManager.LoadScene("LightingTest");
             }
@@ -62,7 +62,7 @@ public class JoinRoom : MonoBehaviour
             if (numPlayers3 < 1)
             {
                 numPlayers3++;
-                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player2 = numPlayers3;
                 currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 2;
                 SceneManager.LoadScene("LightingTest");
             }
@@ -78,7 +78,7 @@ public class JoinRoom : MonoBehaviour
             if (numPlayers4 < 1)
             {
                 numPlayers4++;
-                //GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player = numPlayers1;
+                GameObject.FindWithTag("GameManager").GetComponent<GameManager>().N_Player3 = numPlayers4;
                 currentPlayers.GetComponent<PullPlayerCount>().roomNumber = 3;
                 SceneManager.LoadScene("LightingTest");
             }
