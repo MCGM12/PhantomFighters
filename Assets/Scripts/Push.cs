@@ -12,12 +12,12 @@ public class Push : MonoBehaviour
     public int row;
 
     GameManager mang;
-    
-   
-    public GameObject Statue; //player statue
-    public GameObject statue1; //statue of player 1
-    public GameObject statue2; //statue of player 2
-    public GameObject statue3; //statue of player 3
+
+    public GameObject thisStatue; //the actual statue the player uses
+    public GameObject Statue; //the first statue
+    public GameObject statue1; //2nd stat
+    public GameObject statue2; //3rd stat
+    public GameObject statue3; //4th stat
 
     
     string URL = "http://vgdapi.basmati.org/mods4.php";
@@ -45,21 +45,25 @@ public class Push : MonoBehaviour
         {
             row = 100;
             thisPullURL = pullURL;
+            thisStatue = Statue;
         }
         if (mang.p2)
         {
             row = 101;
             thisPullURL = pullURL1;
+            thisStatue = statue1;
         }
         if (mang.p3)
         {
             row = 102;
             thisPullURL = pullURL2;
+            thisStatue = statue2;
         }
         if (mang.p4)
         {
             row = 103;
             thisPullURL = pullURL3;
+            thisStatue = statue3;
         }
 
 
@@ -73,16 +77,17 @@ public class Push : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
         transform.position = this.transform.position;
-        if (timer == false)
-        {
-            timer = true;
-            StartCoroutine(Timer());
-        }
+        //if (timer == false)
+        //{
+        //    timer = true;
+        //    StartCoroutine(Timer());
+        //}
+
         // Push statue location
         if (Input.GetKeyDown(KeyCode.U)) //Pull after pushing as well
         {
             Debug.Log("PUSHING DATA....");
-            Statue.transform.position = transform.position;
+            //thisStatue.transform.position = transform.position;
             StartCoroutine(Upload());
             Debug.Log(Statue.transform.position);
 
@@ -122,7 +127,7 @@ public class Push : MonoBehaviour
        // form.AddField("myField", "myData");
         form.AddField("groupid", "pm38");
         form.AddField("grouppw", "2yy67vZFEU");
-        form.AddField("row", row);
+        form.AddField("row", row); Debug.Log("Row: " + row);
         string statXY = Statue.transform.position.x.ToString() + "|" + Statue.transform.position.y.ToString();
         
         form.AddField("s4", statXY);
