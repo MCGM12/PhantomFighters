@@ -12,6 +12,14 @@ public class SetAllZeros : MonoBehaviour
         StartCoroutine(Upload());
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            StartCoroutine(Upload());
+        }
+    }
+
     IEnumerator Upload()
     {
         for (int i = 0; i <= 1000; i++)
@@ -35,5 +43,6 @@ public class SetAllZeros : MonoBehaviour
                 }
             }
         }
+        Debug.Log("All reset to zeroes");
     }
 }

@@ -32,7 +32,7 @@ public class StatueScript : MonoBehaviour
     {
         yield return new WaitForSeconds(statTimer);
         timer = false;
-        if(timerActive)transform.position = player.position;
+        //if(timerActive)transform.position = player.position;
     }
 
  

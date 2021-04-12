@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Networking.PlayerConnection;
 using UnityEngine.SceneManagement;
 
 public class Push : MonoBehaviour
@@ -15,18 +14,18 @@ public class Push : MonoBehaviour
     GameManager mang;
     
    
-    public GameObject Statue;
-    public GameObject statue1;
-    public GameObject statue2;
-    public GameObject statue3;
+    public GameObject Statue; //player statue
+    public GameObject statue1; //statue of player 1
+    public GameObject statue2; //statue of player 2
+    public GameObject statue3; //statue of player 3
 
-
+    
     string URL = "http://vgdapi.basmati.org/mods4.php";
-    string pushURL = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=7";
-    string pushURL1 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=8";
-    string pushURL2 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=9";
-    string pushURL3 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=10";
-    public string thisPushURL;
+    string pullURL = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=100";
+    string pullURL1 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=101";
+    string pullURL2 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=102";
+    string pullURL3 = "http://vgdapi.basmati.org/gets4.php?groupid=pm38&row=103";
+    public string thisPullURL; //finds the correct URL to push and pull from.
 
     void Start()
     {
@@ -41,23 +40,25 @@ public class Push : MonoBehaviour
         Debug.Log("dataPath : " + m_Path);
         if(mang.N_Player == 1)
         {
-            thisPushURL = pushURL;
+            thisPullURL = pullURL;
+            row = 101;
         }
         else if(mang.N_Player == 2)
         {
-            thisPushURL = pushURL1;
+            thisPullURL = pullURL1;
+            row = 102;
         }
         else if(mang.N_Player == 3)
         {
-            thisPushURL = pushURL2;
-        }
-        else if(mang.N_Player == 4)
-        {
-            thisPushURL = pushURL3;
+            thisPullURL = pullURL2;
+            row = 103;
         } else if(mang.N_Player <= 0)
         {
-            thisPushURL = pushURL;
+            thisPullURL = pullURL;
+            row = 100;
         }
+
+
 
     }
 
@@ -82,21 +83,25 @@ public class Push : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.P))
         {
-            StartCoroutine(Pull(thisPushURL, Statue));
+            StartCoroutine(Pull(thisPullURL, Statue));
         }
         //After timer
         if(timer == false)
         {
-            StartCoroutine(Pull(pushURL1, statue1));
-            StartCoroutine(Pull(pushURL2, statue2));
-            StartCoroutine(Pull(pushURL3, statue3));
+            //StartCoroutine(Pull(pullURL1, statue1));
+            //StartCoroutine(Pull(pullURL2, statue2));
+            //StartCoroutine(Pull(pullURL3, statue3));
         }
     }
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(statTimer - 1f);
-        //if (timerActive) StartCoroutine(Upload()); //transform.position = Statue.position; //WHATEVER YOU WANT TO HAPPEN BASICALLY GOES HERE
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(statTimer - 0.5f);
+        if (timerActive) StartCoroutine(Upload()); //transform.position = Statue.position; //WHATEVER YOU WANT TO HAPPEN BASICALLY GOES HERE
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Pull(thisPullURL, Statue));
+        StartCoroutine(Pull(pullURL1, statue1));
+        StartCoroutine(Pull(pullURL2, statue2));
+        StartCoroutine(Pull(pullURL3, statue3));
         timer = false;
         
     }
@@ -108,7 +113,7 @@ public class Push : MonoBehaviour
         form.AddField("grouppw", "2yy67vZFEU");
         form.AddField("row", row);
         string statXY = Statue.transform.position.x.ToString() + "|" + Statue.transform.position.y.ToString();
-
+        
         form.AddField("s4", statXY);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
