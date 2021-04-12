@@ -22,7 +22,7 @@ public class SetAllZeros : MonoBehaviour
 
     IEnumerator Upload()
     {
-        for (int i = 0; i <= 1000; i++)
+        for (int i = 0; i <= 150; i++)
         {
             WWWForm form = new WWWForm();
             // form.AddField("myField", "myData");
